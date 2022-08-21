@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  payments-gateway-svc:
+    entrypoint: ""
+    image: payments-gateway:local
+    container_name: payments-gateway
+    environment:
+      ASPNETCORE_URLS: "http://*:8080"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    
+    ports:
+      - "9244:8080"
