@@ -116,7 +116,7 @@ static void ConfigureServices(HostBuilderContext context, IServiceCollection ser
 
 static void ConfigureApplication(WebApplication app)
 {
-    if (app.Environment.IsDevelopment())
+    if (!app.Environment.IsProduction())
     {
         app.UseTunedSwagger();
     }

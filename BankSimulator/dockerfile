@@ -1,0 +1,20 @@
+# Build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /app
+
+# Copy all solution structure
+# NOTE: typically we need to copy only what's needed to economy space & memory
+COPY . .
+
+# Publish
+FROM build as publish
+WORKDIR /app
+RUN dotnet publish CKO.BankOfUk.API/CKO.BankOfUk.API.csproj \
+    -c Release \
+    -o /app/publish
+
+# Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+WORKDIR /app
+COPY --from=publish /app/publish .
+CMD [ "dotnet", "CKO.BankOfUk.API.dll", "-d"]

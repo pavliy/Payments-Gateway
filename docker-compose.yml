@@ -1,13 +1,26 @@
 version: "3.7"
 
 services:
-  payments-gateway-svc:
+  payments_gateway_svc:
     entrypoint: ""
-    image: payments-gateway:local
-    container_name: payments-gateway
+    image: payments_gateway_local
+    container_name: payments_gateway
     environment:
       ASPNETCORE_URLS: "http://*:8080"
-      ASPNETCORE_ENVIRONMENT: "Development"
-    
+      ASPNETCORE_ENVIRONMENT: "DockerEnv"
+    links:
+      - bank_of_uk_simulator
     ports:
-      - "9244:8080"
+      - "63120:8080"
+
+  bank_of_uk_simulator:
+    entrypoint: ""
+    image: bank_of_uk_local
+    container_name: bank_of_uk
+    environment:
+      ASPNETCORE_URLS: "http://*:8080"
+      ASPNETCORE_ENVIRONMENT: "DockerEnv"
+    ports:
+      - "63123:8080"
+    expose:
+      - "63123"

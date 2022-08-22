@@ -45,11 +45,11 @@ public class PaymentsProcessorHostedService : BackgroundService
     {
         while (await this.dataChannel.WaitToReadAsync(cancellationToken))
         {
-            while (this.dataChannel.TryRead(out IntegrationEvent? item))
+            while (this.dataChannel.TryRead(out IntegrationEvent? queueItem))
             {
                 try
                 {
-                    if (item is not PaymentCreatedEvent paymentCreated)
+                    if (queueItem is not PaymentCreatedEvent paymentCreated)
                     {
                         continue;
                     }
@@ -63,6 +63,7 @@ public class PaymentsProcessorHostedService : BackgroundService
                         continue;
                     }
 
+                    // Can also go to automapper
                     var payload = new BankOfUkWithdrawModel(
                         pendingPayment.Card.Number,
                         paymentCreated.CvvCode,

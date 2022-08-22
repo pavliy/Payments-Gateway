@@ -6,8 +6,8 @@ public class Payment : Entity, IAggregationRoot
 {
     public Payment(Card card, Expense spent)
     {
-        this.Card = card;
-        this.Spent = spent;
+        this.Card = card ?? throw new ArgumentNullException(nameof(card));
+        this.Spent = spent ?? throw new ArgumentNullException(nameof(spent));
     }
 
     public Expense Spent { get; init; }

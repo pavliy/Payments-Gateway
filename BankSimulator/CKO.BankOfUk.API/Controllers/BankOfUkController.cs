@@ -8,9 +8,9 @@ namespace CKO.BankOfUk.API.Controllers;
 [Route("[controller]")]
 public class BankOfUkController : ControllerBase
 {
-    private readonly ILogger logger;
+    private readonly Serilog.ILogger logger;
 
-    public BankOfUkController(ILogger logger)
+    public BankOfUkController(Serilog.ILogger logger)
     {
         this.logger = logger;
     }
@@ -18,7 +18,7 @@ public class BankOfUkController : ControllerBase
     [HttpPost(Name = "post")]
     public ActionResult Post([FromBody] OperationInfo operationBody)
     {
-        this.logger.LogInformation("Processing card {CardNumber}", operationBody.CardNumber);
+        this.logger.Information("Processing card {CardNumber}", operationBody.CardNumber);
         
         var randomGenerator = new Random();
 

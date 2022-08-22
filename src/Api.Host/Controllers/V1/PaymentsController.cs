@@ -23,9 +23,9 @@ public class PaymentsController : ControllerBase
 {
     private readonly IMediator mediator;
 
-    private readonly ILogger logger;
+    private readonly Serilog.ILogger logger;
 
-    public PaymentsController(IMediator mediator, ILogger logger)
+    public PaymentsController(IMediator mediator, Serilog.ILogger logger)
     {
         this.mediator = mediator;
         this.logger = logger;
@@ -51,7 +51,6 @@ public class PaymentsController : ControllerBase
     [ProducesResponseType((int)HttpStatusCode.InternalServerError, Type = typeof(ProblemDetails))]
     public async Task<PaymentDetails> GetPayment([FromQuery] Guid paymentId)
     {
-        this.logger.LogError("BLABLA");
         PaymentDetails result = await this.mediator.Send(new GetPaymentQuery(paymentId));
         return result;
     }

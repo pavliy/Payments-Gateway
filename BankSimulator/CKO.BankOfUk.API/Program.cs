@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 using Serilog;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -14,7 +16,7 @@ builder.Host.UseSerilog((ctx, lc) => lc
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -26,3 +28,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+[ExcludeFromCodeCoverage]
+#pragma warning disable SA1601
+public partial class Program
+#pragma warning restore SA1601
+{
+}

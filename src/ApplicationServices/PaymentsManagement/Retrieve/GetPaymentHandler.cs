@@ -10,7 +10,7 @@ using MediatR;
 
 namespace ApplicationServices.PaymentsManagement.Retrieve;
 
-public class GetPaymentHandler : IRequestHandler<GetPaymentQuery, PaymentDetails>
+public sealed class GetPaymentHandler : IRequestHandler<GetPaymentQuery, PaymentDetails>
 {
     private readonly IDataRepository<Payment> paymentsRepository;
 

@@ -13,7 +13,7 @@ public class CardTests
     [TestCase("5167-3333-5555-9999", "XXXX-XXXX-XXXX-9999")]
     public void MaskNumber_ShouldMaskCardNumber(string cardNumber, string maskedCardNumber)
     {
-        var card = new Card(cardNumber, 12, 22);
+        var card = new Card(cardNumber, 12, 2022);
         card.MaskNumber();
         card.Number.Should().Be(maskedCardNumber);
     }

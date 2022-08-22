@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D8F9D0
 		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
 		PaymentsGateway.sln.DotSettings = PaymentsGateway.sln.DotSettings
+		README.md = README.md
+		dockerfile = dockerfile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2964C147-0122-4A67-9889-8B5802992406}"
@@ -27,6 +29,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationServices.Tests", "Tests\ApplicationServices.Tests\ApplicationServices.Tests.csproj", "{8130433D-6CA8-46F1-9737-ED124FD1097D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BankSimulator", "BankSimulator", "{7ED8107A-87C0-4F08-AFFE-71441B004B81}"
+	ProjectSection(SolutionItems) = preProject
+		BankSimulator\dockerfile = BankSimulator\dockerfile
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKO.BankOfUk.API", "BankSimulator\CKO.BankOfUk.API\CKO.BankOfUk.API.csproj", "{A3C823EA-5DD3-4584-A73D-6DFD696D381D}"
 EndProject
