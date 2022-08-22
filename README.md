@@ -55,8 +55,10 @@ The application is built on the .NET 6 framework and provides functionality via 
 
 - Navigate to root of solution folder.
 - `docker build . -t payments_gateway_local && cd BankSimulator && docker build . -t bank_of_uk_local && cd .. && docker-compose up`
-- Navigate to http://localhost:7007/swagger/index.html.
+- Navigate to http://localhost:63120/swagger/index.html
 - After you're done, it's good to do `docker-compose stop`
+
+NOTE: simulator can be found on http://localhost:63123/swagger/index.html
 
 **NOTE:** MacOS has known issue related to Docker. It cannot resolve host name when in compose we need to connect 2 containers. The only one working is: _host.docker.internal_
 
