@@ -43,13 +43,13 @@ public class PaymentsController : ControllerBase
         return new CreatedResult($"/v1/payments/{paymentId}", paymentId);
     }
 
-    [HttpGet]
+    [HttpGet("{paymentId}")]
     [SwaggerOperation(OperationId = "get_payment", Tags = new[] { "Payments Gateway" })]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(ValidationProblemDetails))]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized, Type = typeof(ProblemDetails))]
     [ProducesResponseType((int)HttpStatusCode.InternalServerError, Type = typeof(ProblemDetails))]
-    public async Task<PaymentDetails> GetPayment([FromQuery] Guid paymentId)
+    public async Task<PaymentDetails> GetPayment([FromRoute(Name = "paymentId")] Guid paymentId)
     {
         PaymentDetails result = await this.mediator.Send(new GetPaymentQuery(paymentId));
         return result;

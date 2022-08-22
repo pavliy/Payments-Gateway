@@ -60,6 +60,8 @@ Overall design is based on: clean architecture, onion architecture, DDD concepts
 - Navigate to http://localhost:7007/swagger/index.html.
 - After you're done, it's good to do `docker-compose stop`
 
+**NOTE:** MacOS has known issue related to Docker. It cannot resolve host name when in compose we need to connect 2 containers. The only one working is: _host.docker.internal_
+
 ### Running solution from IDE
 
 - Use Debug build configuration.
@@ -83,7 +85,6 @@ curl 'http://localhost:63120/v1/payments' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
   -H 'Content-Type: application/json' \
-  -H 'Cookie: Questrade.DarkMode=false' \
   -H 'Origin: http://localhost:63120' \
   -H 'Pragma: no-cache' \
   -H 'Referer: http://localhost:63120/swagger/index.html' \
@@ -105,11 +106,10 @@ curl 'http://localhost:63120/v1/payments' \
 
 **GET**
 ```
-curl 'http://localhost:63120/v1/payments?paymentId=4af0dd22-51b6-4533-a4d1-b7cc9f25e96b' \
+curl 'http://localhost:63120/v1/payments/112370bb-65ba-44aa-9c15-15c383390315' \
   -H 'Accept-Language: en-US,en;q=0.9,ru;q=0.8' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
-  -H 'Cookie: Questrade.DarkMode=false' \
   -H 'Pragma: no-cache' \
   -H 'Referer: http://localhost:63120/swagger/index.html' \
   -H 'Sec-Fetch-Dest: empty' \
@@ -131,7 +131,9 @@ It's very simple API with single POST method. Inside it generates random number 
 
 ## API Documentation
 Swagger is used to cover API documentation.  
-More attributes can be added to DTOs to make it look better.
+Data annotations and versioning - in place.  
+
+I did not cover all objects, but main are covered for example of mindset.
 
 ## Communication
 To communicate from worker/hosted service to bank API - reusable http client is used, which is registered using best practices from MS.

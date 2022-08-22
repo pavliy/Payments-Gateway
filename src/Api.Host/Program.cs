@@ -85,7 +85,7 @@ static void ConfigureServices(HostBuilderContext context, IServiceCollection ser
     services
         .AddHealthChecks();
 
-    services.AddSwaggerGen();
+    services.AddSwagger();
     services.RegisterOptions(context.Configuration);
 
     var retryOptions = context.Configuration.GetSection(RetryPolicyOptions.SettingsSectionName)
