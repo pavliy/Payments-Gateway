@@ -5,7 +5,7 @@
 Payments Gateway API allows to pass through requests from merchants to target bank(s).  
 High level schema looks like this:  
 
-![](docs/2022-08-22-00-53-58.png)
+![Schema](Docs/2022-08-22-00-53-58.png)
 
 To process payment it's also needed to pass such information:  
 - Card details
@@ -17,7 +17,7 @@ Below you can see detailed schema for created payments gateway API.
 Taking into account restricted timeline, there was no goal to have production quality solution.  
 However there was a goal to show that many steps that will be needed to make this solution with a good quality.  
 
-![](docs/2022-08-22-00-57-14.png)
+![Schema](./Docs/2022-08-22-00-57-14.png)
 
 - Known and +- fast way to build API => with REST. Though, it makes more sense to switch to GRPC where possible
 - In real life - we would definitely go with real storage and EFCore/Dapper/ADO. Here, however, there is custom quick simulator of DBContext. Data is shared in-memory.
@@ -30,7 +30,7 @@ However there was a goal to show that many steps that will be needed to make thi
 
 Here you can find some ideas how this solution should really look.  
 
-![](docs/2022-08-22-01-06-05.png)
+![Schema](./Docs/2022-08-22-01-06-05.png)
 
 - It's 2022 and it's distributed architectures trend
 - We can have multiple workers and scale them both - vertically & horizontally
@@ -55,10 +55,28 @@ The application is built on the .NET 6 framework and provides functionality via 
 
 - Navigate to root of solution folder.
 - `docker build . -t payments_gateway_local && cd BankSimulator && docker build . -t bank_of_uk_local && cd .. && docker-compose up`
-- Navigate to http://localhost:63120/swagger/index.html
-- After you're done, it's good to do `docker-compose stop`
+- Navigate to http://localhost:63120/swagger/index.html  
+  <details>
+    <summary>Use sample payload to create item</summary>
 
-NOTE: simulator can be found on http://localhost:63123/swagger/index.html
+    ```
+    {
+      "card": {
+        "number": "5169-4082-2222-4981",
+        "expireMonth": 12,
+        "expireYear": 2025,
+        "cvvCode": 420
+      },
+      "expense": {
+        "amount": 50,
+        "currency": "USD"
+      }
+    }
+    ```
+
+    </details>
+
+After you're done, it's good to do `docker-compose stop`  
 
 **NOTE:** MacOS has known issue related to Docker. It cannot resolve host name when in compose we need to connect 2 containers. The only one working is: _host.docker.internal_
 
