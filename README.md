@@ -43,9 +43,7 @@ Here you can find some ideas how this solution should really look.
 
 ## Getting started
 
-The application is built on the .NET 6 framework and provide functionality via REST API. 
-
-Overall design is based on: clean architecture, onion architecture, DDD concepts, CQS & Mediator pattern.
+The application is built on the .NET 6 framework and provides functionality via REST API. 
 
 ### Prerequisites
 
@@ -125,6 +123,14 @@ curl 'http://localhost:63120/v1/payments/112370bb-65ba-44aa-9c15-15c383390315' \
 
 </details>
 
+## About internal structure
+
+Overall design is based on: clean architecture, onion architecture, DDD concepts, CQS & Mediator pattern.  
+- Rich domain model which knows better about its own stuff
+- Immutable entities. In some places records are used for simplicity.
+- Integration event is processed by app layer and sent to processor for working with bank
+- CVV code is not stored in payment details. I thought it's not secure. So passing it through - integration event is used
+- There was no requirement to store card number as masked. So it's preprocessed on retrieval
 
 ## Bank simulator
 It's very simple API with single POST method. Inside it generates random number 100-1000 and returns result based on it.
