@@ -89,6 +89,11 @@ After you're done, it's good to do `docker-compose stop`
     - Swagger: https://localhost:7007/swagger/index.html
     - Healthcheck: https://localhost:7007/healthz
 
+
+### Don't want to run it?
+
+You can watch the vide how I ran it :D [HERE](https://drive.google.com/file/d/1vMBUyv1q5uVBjqHVSWOh3ft0_KV1NNOV/)
+
 ## Sample flow
 
 Capturing some requests used for testing. You can also see payload that can be used in swagger as well.
